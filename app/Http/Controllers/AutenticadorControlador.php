@@ -18,7 +18,7 @@ class AutenticadorControlador extends Controller
          $user = new User([
              'name' => $request->name,
              'email' => $request->email,
-             'password' => bcrypt($request->pass)
+             'password' => bcrypt($request->password)
          ]);
 
          $user->save();
@@ -44,7 +44,7 @@ class AutenticadorControlador extends Controller
         }
 
         $user = $request->user();
-        $token = $user->createToken('Token de Acesso')->accessToken();
+        $token = $user->createToken('Token de Acesso')->accessToken;
 
         return response()->json([
             'token' => $token
@@ -55,6 +55,6 @@ class AutenticadorControlador extends Controller
         $request->user()->token()->revoke();
         return response()->json([
             'res' => 'Deslogado com sucesso'
-        ])
+        ]);
     }
 }

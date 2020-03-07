@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,4 +25,6 @@ Route::prefix('auth')->group(function(){
     });
 });
 
-Route::get('produtos', 'ProdutosControlador@index')->middleware('auth:api');
+Route::middleware('auth:api')->group( function(){
+    Route::get('produtos', 'ProdutosControlador@index');
+});
