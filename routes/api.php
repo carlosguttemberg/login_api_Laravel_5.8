@@ -19,7 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('auth')->group(function(){
     Route::post('registro', 'AutenticadorControlador@registro');
+
     Route::post('login', 'AutenticadorControlador@login');
+
+    Route::get('registro/ativar/{id}/{token}', 'AutenticadorControlador@ativarRegistro');
+
     Route::middleware('auth:api')->group( function(){
         Route::post('logout', 'AutenticadorControlador@logout');
     });
@@ -28,3 +32,4 @@ Route::prefix('auth')->group(function(){
 Route::middleware('auth:api')->group( function(){
     Route::get('produtos', 'ProdutosControlador@index');
 });
+
